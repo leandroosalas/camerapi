@@ -19,21 +19,22 @@ module.exports = function Camera(){
 		this.takePicture(file,undefined);
 	},
 	
-	
 	this.takePicture = function takePicture(file, callback){
 		
-		if(file){
-			this.filename = file;
-			this.output(this.filename);
-		}
-		
 		if(!this.folder){
-			this.folder = "pictures";
+			this.folder = util.format("%s/pitures", __dirname);
 		}
 		
-		if(!this.filename){
-			this.output(util.format("%s/%s/%s.jpg", __dirname, this.folder, new Date().toJSON()));
+		if(file){
+			this.filename = util.format("%s/%s", this.folder, file);
+		}else{
+			this.filename = util.format("%s/%s.jpg", this.folder, new Date().toJSON());
 		}
+		
+		this.output(this.filename);
+		
+		this.args = "raspistill";
+		
 		
 		for(key in this.parameters){
 		    
@@ -47,14 +48,11 @@ module.exports = function Camera(){
 		
 		child = exec(this.args,function (error, stdout, stderr) {
 			
-			//function with the callback of the command
 			if(callback!==undefined){
-				callback(error, stdout, stderr);
+				callback(this.filename,null);
 			}
 			
-			if (error !== null) {
-				console.log('exec error: ' + error);
-			}
+			
 		});
 	},
 	this.prepare = function(parameters){
