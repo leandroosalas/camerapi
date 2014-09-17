@@ -18,7 +18,9 @@ module.exports = function Camera(){
 	this.takePicture = function(file){
 		this.takePicture(file,undefined);
 	},
-	
+	this.takePicture = function(callback){
+		this.takePicture(undefined,callback);
+	},
 	this.takePicture = function takePicture(file, callback){
 		
 		if(!this.folder){
