@@ -9,19 +9,14 @@ module.exports = function Camera(){
 	
 	this.filename = null;
 	this.folder = null;
-	this.args = "raspistill";
+	this.command = "raspistill";
 	this.parameters= [];
-	
-	this.takePicture = function(){
-		this.takePicture(null,undefined);
-	},
-	this.takePicture = function(file){
-		this.takePicture(file,undefined);
-	},
-	this.takePicture = function(callback){
-		this.takePicture(undefined,callback);
-	},
-	this.takePicture = function takePicture(file, callback){
+	this.takePicture = function takePicture(file,callback){
+		
+		if (typeof(file) == "function") {
+			callback = file;
+			file=null;
+		}
 		
 		if(!this.folder){
 			this.folder = util.format("%s/pitures", __dirname);
@@ -35,25 +30,25 @@ module.exports = function Camera(){
 		
 		this.output(this.filename);
 		
-		this.args = "raspistill";
-		
+		this.command = "raspistill";
 		
 		for(key in this.parameters){
 		    
 			if(this.parameters[key]){
-				this.args+= util.format(' %s %s ', key, this.parameters[key]);
+				this.command+= util.format(' %s %s ', key, this.parameters[key]);
 			}
 			
 		}
 		
 		var exec = require('child_process').exec,child;
 		
-		child = exec(this.args,function (error, stdout, stderr) {
+		var self = this;
+		
+		child = exec(this.command,function (error, stdout, stderr) {
 			
 			if(callback!==undefined){
-				callback(this.filename,null);
+				callback(self.filename,stderr);
 			}
-			
 			
 		});
 	},
