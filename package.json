@@ -1,0 +1,17 @@
+{
+  "name": "camerapi",
+  "version": "0.0.1",
+  "description": "Raspberry Pi Camera module",
+  "main": "index.js",
+  "keywords": [
+    "Camera",
+    "Raspberry",
+    "PI"
+  ],
+  "repository": {
+    "type": "git",
+	"url": "git://github.com/leandroosalas/camerapi.git"
+  },
+  "author": "Leandro Salas",
+  "license": "MIT"
+}

@@ -1,0 +1,95 @@
+
+# Camerapi
+
+Camera PI is a module that allow to use the Raspberry PI camera from Node.JS
+
+## Usage
+
+	var Camera = require("camerapi");
+
+	var cam = new Camera();
+
+	cam.prepare({"timeout" : 150, 
+			 "width" : 2592,
+			 "height" : 1944,
+			 "quality" : 85
+		   }).takePicture();
+
+Or
+
+	cam.prepare({"timeout" : 150, 
+			 "width" : 2592,
+			 "height" : 1944,
+			 "quality" : 85
+		   }).takePicture("/home/pi/mypicture.jpg");
+
+
+Or 
+
+	cam.prepare({"timeout" : 150, 
+			 "width" : 2592,
+			 "height" : 1944,
+			 "quality" : 85,
+			 "output" : "/home/pi/mypicture.jpg"
+		   }).takePicture();
+
+
+Or
+
+
+	cam.prepare({"timeout" : 150, 
+			 "width" : 2592,
+			 "height" : 1944,
+			 "quality" : 85
+		   }).takePicture("/home/pi/mypicture.jpg",callback);
+		   
+	function callback(error, stdout, stderr){
+	
+		//do some fun stuff
+	
+	}
+		 
+Or		 
+		   
+	cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(180).takePicture();
+
+Or
+
+
+	cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(180).takePicture("/home/pi/mypicture.jpg");
+
+Or
+
+	cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(180).takePicture("/home/pi/mypicture.jpg", callback);
+
+Or
+
+	cam.timeout(150);
+	cam.width(1024);
+	cam.height(768);
+	cam.quality(75);
+	cam.takePicture();
+
+By default if you don't specify any file name,it tries to find a folder called pictures inside the module
+you can set the directory with : 
+
+	cam.baseDirectory('YOUR_BASE_DIRECTORY');
+
+So every time you take a picture without filename it creates a file with the current date in the base folder.
+  
+
+## Developing
+
+Leandro Salas 
+
+## License
+
+(The MIT License)
+
+Copyright (c) 2014 Leandro Salas
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
