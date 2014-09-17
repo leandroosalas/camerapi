@@ -21,7 +21,7 @@ Or
 			 "width" : 2592,
 			 "height" : 1944,
 			 "quality" : 85
-		   }).takePicture("/home/pi/mypicture.jpg");
+		   }).takePicture("mypicture.jpg");
 
 
 Or 
@@ -30,7 +30,7 @@ Or
 			 "width" : 2592,
 			 "height" : 1944,
 			 "quality" : 85,
-			 "output" : "/home/pi/mypicture.jpg"
+			 "output" : "mypicture.jpg"
 		   }).takePicture();
 
 
@@ -41,9 +41,9 @@ Or
 			 "width" : 2592,
 			 "height" : 1944,
 			 "quality" : 85
-		   }).takePicture("/home/pi/mypicture.jpg",callback);
+		   }).takePicture("mypicture.jpg",callback);
 		   
-	function callback(error, stdout, stderr){
+	function callback(file,error){
 	
 		//do some fun stuff
 	
@@ -56,11 +56,11 @@ Or
 Or
 
 
-	cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(180).takePicture("/home/pi/mypicture.jpg");
+	cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(180).takePicture("mypicture.jpg");
 
 Or
 
-	cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(180).takePicture("/home/pi/mypicture.jpg", callback);
+	cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(180).takePicture("mypicture.jpg", callback);
 
 Or
 
