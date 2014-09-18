@@ -11,6 +11,7 @@ module.exports = function Camera(){
 	this.folder = null;
 	this.command = "raspistill";
 	this.parameters= [];
+	
 	this.takePicture = function takePicture(file,callback){
 		
 		if (typeof(file) == "function") {
@@ -40,6 +41,8 @@ module.exports = function Camera(){
 			
 		}
 		
+		console.log(this.command);
+		
 		var exec = require('child_process').exec,child;
 		
 		var self = this;
@@ -51,6 +54,56 @@ module.exports = function Camera(){
 			}
 			
 		});
+	},
+	this.recordVideo = function(file, callback){
+		
+		if (typeof(file) == "function") {
+			callback = file;
+			file=null;
+		}
+		
+		if(!this.folder){
+			this.folder = util.format("%s/videos", __dirname);
+		}
+		
+		if(file){
+			this.filename = util.format("%s/%s", this.folder, file);
+		}else{
+			this.filename = util.format("%s/%s.h264", this.folder, new Date().toJSON());
+		}
+		
+		this.output(this.filename);
+		
+		this.command = "raspivid";
+		
+		
+		//if we are streaming remove output command
+		if(this.parameters['-o - >']){
+			delete this.parameters["-o"];
+		}
+		
+		for(key in this.parameters){
+		    
+			if(this.parameters[key]){
+				this.command+= util.format(' %s %s ', key, this.parameters[key]);
+			}
+			
+		}
+		
+		console.log(this.command);
+		
+		var exec = require('child_process').exec,child;
+		
+		var self = this;
+		
+		child = exec(this.command,function (error, stdout, stderr) {
+			
+			if(callback!==undefined){
+				callback(self.filename,stderr);
+			}
+			
+		});
+		
 	},
 	this.prepare = function(parameters){
 		
@@ -86,12 +139,18 @@ module.exports = function Camera(){
 	},
 	this.fullscreen = function(value){ 
 		
+		if(value===undefined)
+			value="";
+		
 		this.parameters["-f"] = value;
 		
 		return this;
 		
 	},
 	this.nopreview  = function(value) {
+		
+		if(value===undefined)
+			value="";
 		
 		this.parameters["-n"] = value;
 		
@@ -135,12 +194,18 @@ module.exports = function Camera(){
 	},
 	this.ISO= function(value){
 		
+		if(value===undefined)
+			value="";
+		
 		this.parameters["-ISO"] = value;
 		
 		return this;
 		
 	},
 	this.vstab= function(value){
+		
+		if(value===undefined)
+			value="";
 		
 		this.parameters["-vs"] = value;
 		
@@ -184,6 +249,9 @@ module.exports = function Camera(){
 	},
 	this.metering= function(value){
 		
+		if(value===undefined)
+			value="";
+		
 		this.parameters["-mm"] = value;
 		
 		return this;
@@ -198,12 +266,18 @@ module.exports = function Camera(){
 	},
 	this.hflip= function(value){
 		
+		if(value===undefined)
+			value="";
+		
 		this.parameters["-hf"] = value;
 		
 		return this;
 		
 	},
 	this.vflip= function(value){
+		
+		if(value===undefined)
+			value="";
 		
 		this.parameters["-vf"] = value;
 		
@@ -232,6 +306,9 @@ module.exports = function Camera(){
 		
 	},
 	this.raw= function(value){
+		
+		if(value===undefined)
+			value="";
 		
 		this.parameters["-r"] = value;
 		
@@ -304,14 +381,10 @@ module.exports = function Camera(){
 	},
 	this.fullpreview= function(value){
 		
+		if(value===undefined)
+			value="";
+		
 		this.parameters["-fp"] = value;
-		
-		return this;
-		
-	},
-	this.keypress= function(value){
-		
-		this.parameters["-k"] = value;
 		
 		return this;
 		
@@ -323,8 +396,105 @@ module.exports = function Camera(){
 		return this;
 		
 	},
+	this.bitrate = function(value){
+		
+		this.parameters["-b"] = value;
+		
+		return this;
+		
+	},
+	this.framerate = function(value){
+		
+		this.parameters["-fps"] = value;
+		
+		return this;
+		
+	},
+	this.penc = function(value){
+		
+		if(value===undefined)
+			value="";
+		
+		this.parameters["-e"] = value;
+		
+		return this;
+		
+	},
+	this.intra = function(value){
+		
+		this.parameters["-g"] = value;
+		
+		return this;
+		
+	},
+	this.qp = function(value){
+		
+		this.parameters["-qp"] = value;
+		
+		return this;
+		
+	},
+	this.profile  = function(value){
+		
+		this.parameters["-pf"] = value;
+		
+		return this;
+		
+	},
+	this.inline  = function(value){
+		
+		this.parameters["-ih"] = value;
+		
+		return this;
+		
+	},
+	this.timed  = function(value){
+		
+		this.parameters["-td"] = value;
+		
+		return this;
+		
+	},
+	this.initial  = function(value){
+		
+		this.parameters["-i"] = value;
+		
+		return this;
+		
+	},
+	this.segment  = function(value){
+		
+		this.parameters["-sg"] = value;
+		
+		return this;
+		
+	},
+	this.wrap  = function(value){
+		
+		this.parameters["-wr"] = value;
+		
+		return this;
+		
+	},
+	this.start  = function(value){
+		
+		this.parameters["-sn"] = value;
+		
+		return this;
+		
+	},
+	this.streamVideo = function(value){
+		
+		this.parameters["-o - >"] = value;
+		
+		return this;
+		
+	}
 	this.baseFolder = function(directory){
 		this.folder = directory;
+	},
+	this.reset = function(){
+		this.parameters= [];
 	}
 };
 

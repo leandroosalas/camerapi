@@ -62,3 +62,12 @@ cam.takePicture();
 
 cam.baseFolder('/YOUR_BASE_DIRECTORY');
 cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(200).takePicture();
+
+cam.reset();
+
+cam.timeout(5000)
+.bitrate(3500000)
+.framerate(5)
+.fullscreen()
+.recordVideo("myvideo.h264");
+

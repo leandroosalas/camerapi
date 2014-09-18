@@ -75,6 +75,41 @@ you can set the directory with :
 
 	cam.baseDirectory('YOUR_BASE_DIRECTORY');
 
+Resting all settings
+
+	cam.reset();
+
+Recording Video
+
+	cam.timeout(5000)
+	.bitrate(3500000)
+	.framerate(5)
+	.streamVideo("foo.h264")
+	.fullscreen()
+	.recordVideo();
+
+Or
+
+	cam.timeout(5000)
+	.bitrate(3500000)
+	.framerate(5)
+	.fullscreen()
+	.recordVideo("myvideo.h264");
+
+Or
+
+	cam.timeout(5000)
+	.bitrate(3500000)
+	.framerate(5)
+	.fullscreen()
+	.recordVideo("myvideo.h264",callback);
+
+	function callback(file,error){
+	
+		//do some fun stuff
+	
+	}
+
 So every time you take a picture without filename it creates a file with the current date in the base folder.
   
 

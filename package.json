@@ -1,12 +1,13 @@
 {
   "name": "camerapi",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Raspberry Pi Camera module",
   "main": "index.js",
   "keywords": [
     "Camera",
     "Raspberry",
-    "PI"
+    "PI",
+    "Raspicam"
   ],
   "repository": {
     "type": "git",
