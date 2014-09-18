@@ -41,8 +41,6 @@ module.exports = function Camera(){
 			
 		}
 		
-		console.log(this.command);
-		
 		var exec = require('child_process').exec,child;
 		
 		var self = this;
@@ -89,8 +87,6 @@ module.exports = function Camera(){
 			}
 			
 		}
-		
-		console.log(this.command);
 		
 		var exec = require('child_process').exec,child;
 		
