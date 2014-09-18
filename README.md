@@ -55,16 +55,34 @@ Or
 		 
 Or		 
 		   
-	cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(180).takePicture();
+	cam.timeout(150)
+	.width(1024)
+	.height(768)
+	.quality(75)
+	.opacity(50)
+	.rotation(180)
+	.takePicture();
 
 Or
 
 
-	cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(180).takePicture("mypicture.jpg");
+	cam.timeout(150)
+	.width(1024)
+	.height(768)
+	.quality(75)
+	.opacity(50)
+	.rotation(180)
+	.takePicture("mypicture.jpg");
 
 Or
 
-	cam.timeout(150).width(1024).height(768).quality(75).opacity(50).rotation(180).takePicture("mypicture.jpg", callback);
+	cam.timeout(150)
+	.width(1024)
+	.height(768)
+	.quality(75)
+	.opacity(50)
+	.rotation(180)
+	.takePicture("mypicture.jpg", callback);
 
 Or
 
@@ -116,10 +134,9 @@ Or
 
 So every time you take a picture without filename it creates a file with the current date in the base folder.
   
+## More information
 
-## Developing
-
-Leandro Salas 
+For more information about the raspberry pi camera module, see the [official documentation](http://www.raspberrypi.org/documentation/raspbian/applications/camera.md)
 
 ## License
 
