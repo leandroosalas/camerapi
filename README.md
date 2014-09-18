@@ -3,6 +3,10 @@
 
 Camera PI is a module that allow to use the Raspberry PI camera from Node.JS
 
+## To Install
+
+	npm install camerapi
+
 ## Usage
 
 	var Camera = require("camerapi");
