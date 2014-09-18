@@ -18,6 +18,20 @@ Camera PI is a module that allow to use the Raspberry PI camera from Node.JS
 			 "height" : 1944,
 			 "quality" : 85
 		   }).takePicture();
+		   
+If you decided to use this type of implementation you can use any parameter, just add it as a 
+key:value attribute.
+
+	cam.prepare({"timeout" : 150, 
+			 "width" : 2592,
+			 "height" : 1944,
+			 "quality" : 85,
+			 "vflip" : "",
+			 ..,
+			 ..,
+			 ..
+		   }).takePicture();
+ 
 
 Or
 
@@ -137,6 +151,8 @@ So every time you take a picture without filename it creates a file with the cur
 ## More information
 
 For more information about the raspberry pi camera module, see the [official documentation](http://www.raspberrypi.org/documentation/raspbian/applications/camera.md)
+
+ 
 
 ## License
 
