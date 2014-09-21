@@ -1,6 +1,6 @@
 {
   "name": "camerapi",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Raspberry Pi Camera module",
   "main": "index.js",
   "keywords": [
