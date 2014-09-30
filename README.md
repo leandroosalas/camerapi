@@ -16,7 +16,7 @@ Camera PI is a module that allow to use the Raspberry PI camera from Node.JS
 By default if you don't specify any file name,it tries to find a folder called pictures inside the module
 you can set the directory with : 
 
-	cam.baseDirectory('/YOUR_BASE_DIRECTORY');
+	cam.baseFolder('/YOUR_BASE_DIRECTORY');
 
 	cam.prepare({"timeout" : 150, 
 			 "width" : 2592,
